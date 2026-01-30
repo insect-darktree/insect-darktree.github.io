@@ -7,6 +7,62 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 // List of current core team
 const DarkTreeTeam = [
   {
+    name: (<a href="https://people.kth.se/~dbro/">Ela Iwaszkiewicz-Eggebrecht</a>),
+    image: 'img/Ela_I_E.jpg',
+    title: (<>Research Manager </>),
+    description: (<> Ela oversees the implementation of the DarkTree project, managing logistics, administration, labwork, 
+    and research coordination. Beyond DarkTree, she leads the Swedish Insect Monitoring Scheme, applying DNA metabarcoding 
+    to track biodiversity. Her research focuses on developing and optimizing insect metabarcoding and abundance estimation methods. 
+    Ela holds a PhD in Evolutionary Biology from the Max Planck Institute (Germany) and an MSc in Oceanography from Sorbonne University (France).  
+    [contact: ela.iwaszkiewicz@nrm.se]
+    </>),
+  },
+  {
+    name: (<a href="https://people.kth.se/~dbro/">Mårten Klinth</a>),
+    image: 'img/MartenKlinth.jpg',
+    title: (<>Lab Specialist </>),
+    description: (<> Mårten received the PhD degree from the Norwegian University of Science and Technology, Norway, in 2025. 
+    He focuses on DNA barcoding of insects (both individual specimens and bulk samples) and is in charge of the DNA lab 
+    at Station Linné on Öland. He also works with Ela in the Swedish Insect Monitoring Scheme. [contact: marten@stationlinne.se]
+    </>),
+  },
+  {
+    name: (<a href="https://people.kth.se/~dbro/">Maeva Caut</a>),
+    image: 'img/MaevaCaut.jpg',
+    title: (<>PhD student </>),
+    description: (<> Maeva is a PhD student at Linköping University in the Computer Vision and Learning System Laboratory under 
+    the supervision of Pr. Michael Felsberg. Her research focuses on developing machine learning models for insect biodiversity, 
+    particularly species classification through the integration of images, DNA barcodes, and taxonomic labels.
+    </>),
+  },
+  {
+    name: (<a href="https://people.kth.se/~dbro/">Samantha Lopez Clinton</a>),
+    image: 'img/Samantha_Lopez_Clinton.jpg',
+    title: (<>PhD student </>),
+    description: (<> Samantha is a PhD student in the Data-Driven Life Science (DDLS) programme at the Swedish Museum of Natural History, 
+    Stockholm University, and the Centre for Palaeogenetics, working in the research group led by Tom. As part of her dissertation, 
+    and in collaboration with Fredrik and Ela, she has worked on bulkDNA shotgun sequencing data from Malaise trap samples collected by 
+    the Insect Biome Atlas project. In DarkTree, Samantha works with Claudia to establish the de-novo genome assembly pipeline 
+    for insect shotgun sequencing data.
+    </>),
+  },
+  {
+    name: (<a href="https://people.kth.se/~dbro/">Claudia Weber </a>),
+    image: 'img/ClaudiaWeber.jpg',
+    title: (<>Researcher </>),
+    description: (<>Claudia is a researcher at the Swedish Museum of Natural History, and is responsible for assembling the DarkTree genomes 
+    (with help from Sam). She completed her MBiol in Biology and PhD on genome structure and determinants of rates of evolution 
+    at the University of Bath (UK), and has extensive experience working with models of molecular evolution. Recent work has also involved 
+    using machine learning to screen insect sequencing data for microbial contaminants, and to facilitate the assembly of genomes from undersampled taxa.
+    </>),
+  },
+  {
+    name: (<a href="https://people.kth.se/~dbro/">Victor Palmqvist </a>),
+    image: 'img/david2021.jpg',
+    title: (<>Reasearcher </>),
+    description: (<> Viktor ... is David??</>),
+  },
+  {
     name: (<a href="https://ronquistlab.github.io/people.html#tim">Thimothée Virgoulay</a>),
     image: 'img/timv.jpg',
     title: (<>Researcher</>),
@@ -40,7 +96,7 @@ in California, USA. Between 2012 and 2014, he was a visiting scholar at the Univ
 also was employed as a part-time researcher until 2016. David’s research focuses on the intersection of probabilistic machine 
 learning, domain-specific languages, and compilers, typically applied to areas where computational efficiency matters, 
 including phylogenetics and cyber-physical systems.</>),
-  },
+  } 
 ];
 
 // List of Former Members
