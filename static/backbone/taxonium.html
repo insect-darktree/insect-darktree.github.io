@@ -72,10 +72,10 @@
 
     .selected-nodes-panel {
       position: fixed;
-      bottom: 240px;
+      top: 16px;
       left: 16px;
       width: 280px;
-      max-height: 300px;
+      max-height: 400px;
       background: white;
       border-radius: 8px;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
@@ -229,6 +229,99 @@
     .selected-node-sequences .sequence-item {
       margin-bottom: 2px;
     }
+
+    .placement-legend {
+      position: fixed;
+      bottom: 16px;
+      left: 16px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+      padding: 10px 12px;
+      font-size: 12px;
+    }
+
+    .placement-legend-header {
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .placement-legend-toggle {
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      font-size: 10px;
+      padding: 2px 4px;
+    }
+
+    .placement-legend-toggle:hover {
+      color: #333;
+    }
+
+    .placement-legend-bar {
+      width: 260px;
+      height: 16px;
+      border-radius: 3px;
+      margin-bottom: 2px;
+    }
+
+    .placement-legend-ticks {
+      position: relative;
+      width: 260px;
+      height: 6px;
+    }
+
+    .placement-legend-tick-mark {
+      position: absolute;
+      width: 1px;
+      height: 6px;
+      background: #666;
+      transform: translateX(-50%);
+    }
+
+    .placement-legend-tick-mark:first-child {
+      transform: translateX(0);
+    }
+
+    .placement-legend-tick-mark:last-child {
+      transform: translateX(-100%);
+    }
+
+    .placement-legend-labels {
+      position: relative;
+      width: 260px;
+      color: #666;
+      font-size: 10px;
+      height: 14px;
+    }
+
+    .placement-legend-tick {
+      position: absolute;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    .placement-legend-tick:first-child {
+      transform: translateX(0);
+    }
+
+    .placement-legend-tick:last-child {
+      transform: translateX(-100%);
+    }
+
+    .placement-legend.minimized {
+      padding: 6px 10px;
+    }
+
+    .placement-legend.minimized .placement-legend-bar,
+    .placement-legend.minimized .placement-legend-labels {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -243,7 +336,161 @@
     import { createRoot } from 'https://esm.sh/react-dom@19/client';
     import Taxonium from 'https://esm.sh/taxonium-component';
 
-    const { createElement: h, useState, useEffect, useCallback } = React;
+    const { createElement: h, useState, useEffect, useCallback, useRef } = React;
+
+    // Accessible Sunset palette from Bokeh (Paul Tol's scheme)
+    const SUNSET_PALETTE = [
+      [54, 75, 154],   // #364B9A - deep blue
+      [74, 123, 183],  // #4A7BB7
+      [110, 166, 205], // #6EA6CD
+      [152, 202, 225], // #98CAE1
+      [194, 228, 239], // #C2E4EF
+      [234, 236, 204], // #EAECCC - pale yellow
+      [254, 218, 139], // #FEDA8B
+      [253, 179, 102], // #FDB366
+      [246, 126, 75],  // #F67E4B
+      [221, 61, 45],   // #DD3D2D
+      [165, 0, 38]     // #A50026 - deep red
+    ];
+
+    // Placement Count Legend Component
+    function PlacementCountLegend({ maxValue, visible }) {
+      const [minimized, setMinimized] = useState(false);
+
+      // Collapse/expand Taxonium's default legend based on visibility
+      useEffect(() => {
+        const toggleDefaultLegend = (shouldCollapse) => {
+          // Look for elements containing triangle Unicode characters
+          // Down triangles indicate expanded state, up triangles indicate collapsed state
+          const downTriangles = ['▼', '▾', '▿', '⌄', '˅', '⋁', '∨'];
+          const upTriangles = ['▲', '▴', '▵', '⌃', '˄', '⋀', '∧'];
+          const targetChars = shouldCollapse ? downTriangles : upTriangles;
+
+          const textWalker = document.createTreeWalker(
+            document.body,
+            NodeFilter.SHOW_TEXT,
+            null,
+            false
+          );
+
+          while (textWalker.nextNode()) {
+            const text = textWalker.currentNode.textContent;
+            if (targetChars.some(char => text.includes(char))) {
+              let el = textWalker.currentNode.parentElement;
+              if (el.closest('.placement-legend') || el.closest('.selected-nodes-panel')) continue;
+
+              // Find clickable ancestor
+              while (el && el !== document.body) {
+                const style = window.getComputedStyle(el);
+                if (style.cursor === 'pointer' || el.tagName === 'BUTTON' || el.onclick) {
+                  console.log(shouldCollapse ? 'Collapsing' : 'Expanding', 'default legend');
+                  el.click();
+                  return true;
+                }
+                el = el.parentElement;
+              }
+            }
+          }
+
+          return false;
+        };
+
+        // Delay to allow Taxonium to render
+        const timer = setTimeout(() => {
+          if (visible) {
+            toggleDefaultLegend(true); // Collapse when our legend is shown
+          } else {
+            toggleDefaultLegend(false); // Expand when our legend is hidden
+          }
+        }, 1500);
+
+        return () => clearTimeout(timer);
+      }, [visible]);
+
+      if (!visible || maxValue <= 0) return null;
+
+      // Build gradient stops using log scale (matching the actual color mapping)
+      const gradientStops = ['rgb(180,180,180) 0%']; // Grey for zero at 0%
+      const logMax = Math.log(maxValue + 1);
+
+      // Add stops at key values to show log scale distribution
+      const keyValues = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, maxValue]
+        .filter(v => v <= maxValue);
+
+      keyValues.forEach(value => {
+        const t = Math.log(value + 1) / logMax;
+        const paletteIdx = Math.min(
+          Math.floor(t * (SUNSET_PALETTE.length - 0.01)),
+          SUNSET_PALETTE.length - 1
+        );
+        const color = SUNSET_PALETTE[paletteIdx];
+        // Position based on log scale, but squeeze into 5-100% range (0-5% is grey for zero)
+        const percent = 5 + (t * 95);
+        gradientStops.push(`rgb(${color.join(',')}) ${percent.toFixed(1)}%`);
+      });
+
+      const gradient = `linear-gradient(to right, ${gradientStops.join(', ')})`;
+
+      // Calculate tick positions for log scale (0, and ~3 intermediate values, plus max)
+      const tickValues = [0];
+      // Add intermediate ticks at roughly equal log intervals
+      const numTicks = 3;
+      for (let i = 1; i <= numTicks; i++) {
+        const t = i / (numTicks + 1);
+        const value = Math.round(Math.exp(t * logMax) - 1);
+        if (value > 0 && value < maxValue) {
+          tickValues.push(value);
+        }
+      }
+      tickValues.push(maxValue);
+
+      return h('div', { className: `placement-legend${minimized ? ' minimized' : ''}` },
+        h('div', { className: 'placement-legend-header' },
+          h('span', null, 'Placement Count'),
+          h('button', {
+            className: 'placement-legend-toggle',
+            onClick: () => setMinimized(!minimized)
+          }, minimized ? 'expand' : 'minimize')
+        ),
+        h('div', {
+          className: 'placement-legend-bar',
+          style: { background: gradient }
+        }),
+        h('div', { className: 'placement-legend-ticks' },
+          tickValues.map((value, i) => {
+            let percent;
+            if (value === 0) {
+              percent = 0;
+            } else {
+              const t = Math.log(value + 1) / logMax;
+              percent = 5 + (t * 95);
+            }
+            return h('div', {
+              key: i,
+              className: 'placement-legend-tick-mark',
+              style: { left: `${percent}%` }
+            });
+          })
+        ),
+        h('div', { className: 'placement-legend-labels' },
+          tickValues.map((value, i) => {
+            // Calculate position: 0 at 0%, max at 100%, others based on log scale
+            let percent;
+            if (value === 0) {
+              percent = 0;
+            } else {
+              const t = Math.log(value + 1) / logMax;
+              percent = 5 + (t * 95);
+            }
+            return h('span', {
+              key: i,
+              className: 'placement-legend-tick',
+              style: { left: `${percent}%` }
+            }, value.toLocaleString());
+          })
+        )
+      );
+    }
 
     // Selected Nodes Panel Component
     function SelectedNodesPanel({ nodes, onRemove, onClear }) {
@@ -258,9 +505,12 @@
         const text = nodes.map(n => {
           let line = n.name;
           if (n.metadata) {
+            if (n.metadata.common_name) line += `\t${n.metadata.common_name}`;
             if (n.metadata.subclass) line += `\t${n.metadata.subclass}`;
             if (n.metadata.order) line += `\t${n.metadata.order}`;
+            if (n.metadata.superfamily) line += `\t${n.metadata.superfamily}`;
             if (n.metadata.family) line += `\t${n.metadata.family}`;
+            if (n.metadata.subfamily) line += `\t${n.metadata.subfamily}`;
             if (n.metadata.genus) line += `\t${n.metadata.genus}`;
             if (n.metadata.placement_count !== undefined) line += `\tPlacements: ${n.metadata.placement_count}`;
           }
@@ -294,12 +544,26 @@
                 }, '\u00d7')
               ),
               expanded[node.id] && node.metadata && h('div', { className: 'selected-node-metadata' },
-              node.metadata.subclass &&
+                node.metadata.ThumbnailURL &&
+                  h('div', { className: 'selected-node-image' },
+                    h('img', {
+                      src: node.metadata.ThumbnailURL,
+                      alt: node.name,
+                      style: { maxWidth: '100%', maxHeight: '150px', borderRadius: '4px', marginBottom: '8px' }
+                    })
+                  ),
+                node.metadata.common_name &&
+                  h('div', null, `Common name: ${node.metadata.common_name}`),
+                node.metadata.subclass &&
                   h('div', null, `Subclass: ${node.metadata.subclass}`),
                 node.metadata.order &&
                   h('div', null, `Order: ${node.metadata.order}`),
+                node.metadata.superfamily &&
+                  h('div', null, `Superfamily: ${node.metadata.superfamily}`),
                 node.metadata.family &&
                   h('div', null, `Family: ${node.metadata.family}`),
+                node.metadata.subfamily &&
+                  h('div', null, `Subfamily: ${node.metadata.subfamily}`),
                 node.metadata.genus &&
                   h('div', null, `Genus: ${node.metadata.genus}`),
                 node.metadata.placement_count !== undefined &&
@@ -329,10 +593,16 @@
       const [error, setError] = useState(null);
       const [query, setQuery] = useState({});
       const [selectedNodes, setSelectedNodes] = useState([]);
+      const [maxPlacementCount, setMaxPlacementCount] = useState(0);
+      const [colorByField, setColorByField] = useState('meta_placement_count');
 
       // Handler to update query state (used by Taxonium for view/selection state)
       const updateQuery = (newQuery) => {
         setQuery(prev => ({ ...prev, ...newQuery }));
+        // Track color field changes from query
+        if (newQuery.color !== undefined) {
+          setColorByField(newQuery.color);
+        }
       };
 
       // Handler for when node details are loaded - adds to our list with full metadata
@@ -347,12 +617,16 @@
 
         // Extract metadata fields
         const metadata = {
+          common_name: nodeDetails.meta_common_name,
           subclass: nodeDetails.meta_subclass,
           order: nodeDetails.meta_order,
+          superfamily: nodeDetails.meta_superfamily,
           family: nodeDetails.meta_family,
+          subfamily: nodeDetails.meta_subfamily,
           genus: nodeDetails.meta_genus,
           placement_count: nodeDetails.meta_placement_count,
           top_sequences: nodeDetails.meta_top_sequences,
+          ThumbnailURL: nodeDetails.meta_ThumbnailURL,
         };
 
         setSelectedNodes(prev => {
@@ -491,17 +765,22 @@
             if (metadataResponse.ok) {
               const metadataText = await metadataResponse.text();
 
-              // Parse metadata and remove placement_bin column
+              // Parse metadata and remove unwanted columns
               const lines = metadataText.trim().split('\n');
               const header = lines[0].split('\t');
-              const binIndex = header.indexOf('placement_bin');
 
-              // Filter out placement_bin column from metadata
+              // Find columns to remove (in reverse order to preserve indices)
+              const columnsToRemove = ['other_sequences', 'placement_bin']
+                .map(col => header.indexOf(col))
+                .filter(idx => idx !== -1)
+                .sort((a, b) => b - a);  // Sort descending to remove from end first
+
+              // Filter out unwanted columns from metadata
               let filteredMetadataText = metadataText;
-              if (binIndex !== -1) {
+              if (columnsToRemove.length > 0) {
                 const filteredLines = lines.map(line => {
                   const cols = line.split('\t');
-                  cols.splice(binIndex, 1);
+                  columnsToRemove.forEach(idx => cols.splice(idx, 1));
                   return cols.join('\t');
                 });
                 filteredMetadataText = filteredLines.join('\n');
@@ -514,21 +793,6 @@
                 data: filteredMetadataText,
                 taxonColumn: "name",
               };
-
-              // Accessible Sunset palette from Bokeh (Paul Tol's scheme)
-              const sunsetPalette = [
-                [54, 75, 154],   // #364B9A - deep blue
-                [74, 123, 183],  // #4A7BB7
-                [110, 166, 205], // #6EA6CD
-                [152, 202, 225], // #98CAE1
-                [194, 228, 239], // #C2E4EF
-                [234, 236, 204], // #EAECCC - pale yellow
-                [254, 218, 139], // #FEDA8B
-                [253, 179, 102], // #FDB366
-                [246, 126, 75],  // #F67E4B
-                [221, 61, 45],   // #DD3D2D
-                [165, 0, 38]     // #A50026 - deep red
-              ];
 
               // Find the maximum placement_count value for color scaling
               const countIndex = header.indexOf('placement_count');
@@ -551,14 +815,15 @@
                   // Use logarithmic scale to spread colors better
                   const t = Math.log(i + 1) / logMax;
                   const paletteIdx = Math.min(
-                    Math.floor(t * (sunsetPalette.length - 0.01)),
-                    sunsetPalette.length - 1
+                    Math.floor(t * (SUNSET_PALETTE.length - 0.01)),
+                    SUNSET_PALETTE.length - 1
                   );
-                  colorMapping[String(i)] = sunsetPalette[paletteIdx];
+                  colorMapping[String(i)] = SUNSET_PALETTE[paletteIdx];
                 }
               }
 
               console.log('Generated colorMapping for values 0 to', maxValue);
+              setMaxPlacementCount(maxValue);
             }
 
             // Construct the sourceData object with metadata
@@ -569,6 +834,7 @@
               data: nwk,
               metadata: metadata,
               colorMapping: colorMapping,
+              useDistances: false,  // Align tips (cladogram mode)
             };
 
             setSourceData(newSourceData);
@@ -581,6 +847,38 @@
 
         loadData();
       }, []);
+
+      // Monitor DOM for color field changes from Taxonium's dropdown
+      useEffect(() => {
+        if (!sourceData) return;
+
+        const checkColorField = () => {
+          // Look for the color-by dropdown/select in Taxonium's UI
+          const selects = document.querySelectorAll('select');
+          for (const select of selects) {
+            // Check if this is the color-by selector by looking at options
+            const options = Array.from(select.options);
+            const hasPlacementCount = options.some(opt =>
+              opt.value?.includes('placement_count') || opt.text?.includes('placement_count')
+            );
+            if (hasPlacementCount) {
+              const selectedValue = select.value;
+              if (selectedValue?.includes('placement_count')) {
+                setColorByField('meta_placement_count');
+              } else {
+                setColorByField(selectedValue || '');
+              }
+              break;
+            }
+          }
+        };
+
+        // Check periodically since Taxonium may render controls later
+        const interval = setInterval(checkColorField, 1000);
+        checkColorField();
+
+        return () => clearInterval(interval);
+      }, [sourceData]);
 
       if (error) {
         return h('div', null, `Error: ${error}`);
@@ -598,9 +896,12 @@
             defaultColorByField: "meta_placement_count",
             colorMapping: sourceData.colorMapping || {},
             keys_to_display: [
+              "meta_common_name",
               "meta_subclass",
               "meta_order",
+              "meta_superfamily",
               "meta_family",
+              "meta_subfamily",
               "meta_genus",
               "meta_placement_count",
               "meta_top_sequences"
@@ -614,6 +915,10 @@
           nodes: selectedNodes,
           onRemove: handleRemoveNode,
           onClear: handleClearNodes,
+        }),
+        h(PlacementCountLegend, {
+          maxValue: maxPlacementCount,
+          visible: colorByField === 'meta_placement_count' || colorByField?.includes('placement_count'),
         })
       );
     }
