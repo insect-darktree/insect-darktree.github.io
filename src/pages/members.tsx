@@ -7,8 +7,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 // List of current core team
 const DarkTreeTeam = [
   {
-    name: (<a href="https://people.kth.se/~dbro/">Ela Iwaszkiewicz-Eggebrecht</a>),
-    image: 'img/Ela_I_E.jpg',
+    name: (<a href="https://www.thetangledlines.de/ela/#section0">Ela Iwaszkiewicz-Eggebrecht</a>),
+    image: 'img/Ela_I_E_lab.jpg',
     title: (<>Research Manager </>),
     description: (<> Ela oversees the implementation of the DarkTree project, managing logistics, administration and labwork. Beyond DarkTree, she leads the Swedish Insect Monitoring Scheme, applying DNA metabarcoding 
     to track biodiversity. Ela holds a PhD in Evolutionary Biology from the Max Planck Institute (Germany) and an MSc in Oceanography from Sorbonne University (France).  
@@ -16,7 +16,7 @@ const DarkTreeTeam = [
     </>),
   },
   {
-    name: (<a href="https://people.kth.se/~dbro/">Mårten Klinth</a>),
+    name: (<a href="https://www.stationlinne.se/sv/about/personal/">Mårten Klinth</a>),
     image: 'img/MartenKlinth.jpg',
     title: (<>Lab Specialist </>),
     description: (<> Mårten received the PhD degree from the Norwegian University of Science and Technology, Norway, in 2025. 
@@ -25,7 +25,7 @@ const DarkTreeTeam = [
     </>),
   },
   {
-    name: (<a href="https://people.kth.se/~dbro/">Maeva Caut</a>),
+    name: (<a href="https://liu.se/en/employee/maeca40">Maeva Caut</a>),
     image: 'img/MaevaCaut.jpg',
     title: (<>PhD student </>),
     description: (<> Maeva is a PhD student at Linköping University in the Computer Vision and Learning System Laboratory under 
@@ -55,10 +55,10 @@ const DarkTreeTeam = [
     </>),
   },
   {
-    name: (<a href="https://people.kth.se/~dbro/">Victor Palmqvist </a>),
-    image: 'img/david2021.jpg',
+    name: (<a href="">Viktor Palmqvist </a>),
+    image: 'img/',
     title: (<>Reasearcher </>),
-    description: (<> Viktor ... is David??</>),
+    description: (<> Viktor ...</>),
   },
   {
     name: (<a href="https://ronquistlab.github.io/people.html#tim">Thimothée Virgoulay</a>),
@@ -171,13 +171,19 @@ const Collaborators = [
     name: (<a href="https://">Cristina Lupaşcu-Vasilița</a>),
     image: 'img/Vasilita.jpg',
     title: (<>Researcher</>),
-    description: (<>tex text </>),
+    description: (<>Doctoral candidate and GBOL Project Manager at the Natural History Museum in Stuttgart. Researcher at the Karsruhe Institue of Technology focusing on CT-scanning of insect specimens. </>),
   },
   {
-    name: (<a href="https://">Thomas van de Kamp</a>),
+    name: (<a href="https://www.ips.kit.edu/2890_5177.php">Thomas van de Kamp</a>),
     image: 'img/Kamp.jpg',
     title: (<>Researcher</>),
-    description: (<>text text </>),
+    description: (<>Head of the IPS/LAS BioLab at Karlsruhe Institute of Technology. PI for morphological imaging in life sciences. Coordinator for the research topic “Building Blocks of Life” within the Helmholtz program “From Matter to Materials and Life”.</>),
+  },
+  {
+    name: (<a href="">Want to get Involved?</a>),
+    //image: 'img/',
+    //title: (<></>),
+    description: (<>We are welcoming collaborations! If you want to get involved with the DarkTree project, go to ,<a href="https://insect-darktree.github.io/involved/get_involved">this page</a>.</>),
   },
 ];
 
