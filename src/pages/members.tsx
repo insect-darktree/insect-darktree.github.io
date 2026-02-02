@@ -10,10 +10,8 @@ const DarkTreeTeam = [
     name: (<a href="https://people.kth.se/~dbro/">Ela Iwaszkiewicz-Eggebrecht</a>),
     image: 'img/Ela_I_E.jpg',
     title: (<>Research Manager </>),
-    description: (<> Ela oversees the implementation of the DarkTree project, managing logistics, administration, labwork, 
-    and research coordination. Beyond DarkTree, she leads the Swedish Insect Monitoring Scheme, applying DNA metabarcoding 
-    to track biodiversity. Her research focuses on developing and optimizing insect metabarcoding and abundance estimation methods. 
-    Ela holds a PhD in Evolutionary Biology from the Max Planck Institute (Germany) and an MSc in Oceanography from Sorbonne University (France).  
+    description: (<> Ela oversees the implementation of the DarkTree project, managing logistics, administration and labwork. Beyond DarkTree, she leads the Swedish Insect Monitoring Scheme, applying DNA metabarcoding 
+    to track biodiversity. Ela holds a PhD in Evolutionary Biology from the Max Planck Institute (Germany) and an MSc in Oceanography from Sorbonne University (France).  
     [contact: ela.iwaszkiewicz@nrm.se]
     </>),
   },
@@ -87,6 +85,15 @@ const DarkTreeTeam = [
     identification, and leading the Insect Biome Atlas project.</>),
   },
   {
+    name: (<a href="https://ronquistlab.github.io/people.html">Michael Felsberg </a>),
+    image: '/img/M_Felsberg.jpg',
+    title: (<>Principal Investigator </>),
+    description: (<>Michale received the PhD degree from Kiel University, Germany, in 2002, and the docent degree 
+    from Linköping University, in 2005. He is a full professor at Linköping University, Sweden. His research interests include, 
+    besides visual object tracking, video object and instance segmentation, classification, segmentation, and registration of point clouds, 
+    as well as efficient machine learning techniques for incremental, few-shot, and long-tailed settings.</>),
+  },
+  {
     name: (<a href="https://people.kth.se/~dbro/">David Broman</a>),
     image: 'img/david2021.jpg',
     title: (<>Principal Investigator </>),
@@ -96,6 +103,24 @@ in California, USA. Between 2012 and 2014, he was a visiting scholar at the Univ
 also was employed as a part-time researcher until 2016. David’s research focuses on the intersection of probabilistic machine 
 learning, domain-specific languages, and compilers, typically applied to areas where computational efficiency matters, 
 including phylogenetics and cyber-physical systems.</>),
+  },
+  {
+    name: (<a href="https://people.kth.se/~dbro/">Tom van der Valk</a>),
+    image: 'img/david2021.jpg',
+    title: (<>Principal Investigator </>),
+    description: (<> Tom is a Data-Driven Life Science Fellow at the Swedish Museum of Natural History.
+His research has focused on population genomics and palaeogenomics of vertebrates, and he has extensive experience in using 
+challenging biological material for genome sequencing and assembly. Tom has among others been involved in the de-novo genome 
+assembly of Spruce and Pine, among the most challenging genomes assembled to date. His group is also developing large-scale 
+computational methods for the analysis of environmental DNA samples, including Malaise trap samples.</>),
+  }, 
+  {
+    name: (<a href="https://people.kth.se/~dbro/">Dave Karlsson</a>),
+    image: 'img/Dave_K.jpg',
+    title: (<>Principal Investigator </>),
+    description: (<> Dave is a Researcher (Doctor in Systematic Zoology) and Managing Director of Station Linné. 
+    Taxonomist and naturalist whose research focuses on insect diversity, with a particular emphasis on Hymenoptera (especially Braconidae) 
+    and (macro)Lepidoptera. He is deeply involved in education and outreach and has a strong passion for natural history education.</>),
   } 
 ];
 
@@ -103,10 +128,11 @@ including phylogenetics and cyber-physical systems.</>),
 // Appear in order
 const FormerMembers = [
   {
-    name: (<a href="https://">Name</a>),
-    image: 'img/dk_logo.jpg',
-    title: (<>Title</>),
-    description: (<>Description</>),
+    name: (<a href="https://">Gizem Caylak </a>),
+    image: 'img/caylak.jpg',
+    title: (<>PhD student </>),
+    description: (<>Gizem is a PhD student at KTH Royal Institute of Technology. Her research focuses on developing methods for improving inference 
+    in probabilistic programming languages, with applications to phylogenetic studies.</>),
   },
   {
     name: (<a href="https://">Name</a>),
@@ -129,10 +155,29 @@ const ScientificAdvis= [
 // List of Collaborators
 const Collaborators = [
   {
-    name: (<a href="https://">Name</a>),
-    image: 'img/dk_logo.jpg',
-    title: (<>Title</>),
-    description: (<>Description</>),
+    name: (<a href="https://">Tilia Häggström </a>),
+    image: 'img/Tilia_Haggstrom.jpg',
+    title: (<>MSc student</>),
+    description: (<>Tilia is a MSc student at Uppsala University with a BSc in molecular biology from Uppsala university. Her BSc thesis was on gallmidges (Cecidomyiidae), which will also be the topic of her MSc thesis. She focuses on combining molecular and morphological characters for identification of mycophagous Cecidomyiidae and their phylogenetic relatinships.</>),
+  },
+  {
+    name: (<a href="https://">Fabian Lundell </a>),
+    image: 'img/FabianLundell.jpg',
+    title: (<>MSc student</>),
+    description: (<>Fabian is a MSc student at Uppsala University who specializes in braconid wasps (Family Braconidae) 
+    which was the focus of his BSc thesis. He also does braconid research at Station Linné together with Dave Karlsson and Mårten Klinth.</>),
+  },
+  {
+    name: (<a href="https://">Cristina Lupaşcu-Vasilița</a>),
+    image: 'img/Vasilita.jpg',
+    title: (<>Researcher</>),
+    description: (<>tex text </>),
+  },
+  {
+    name: (<a href="https://">Thomas van de Kamp</a>),
+    image: 'img/Kamp.jpg',
+    title: (<>Researcher</>),
+    description: (<>text text </>),
   },
 ];
 
