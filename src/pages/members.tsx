@@ -34,7 +34,7 @@ const DarkTreeTeam = [
     </>),
   },
   {
-    name: (<a href="https://people.kth.se/~dbro/">Samantha Lopez Clinton</a>),
+    name: (<a href="https://www.samanthalc.com/">Samantha Lopez Clinton</a>),
     image: 'img/Samantha_Lopez_Clinton.jpg',
     title: (<>PhD student </>),
     description: (<> Samantha is a PhD student in the Data-Driven Life Science (DDLS) programme at the Swedish Museum of Natural History, 
@@ -45,7 +45,7 @@ const DarkTreeTeam = [
     </>),
   },
   {
-    name: (<a href="https://people.kth.se/~dbro/">Claudia Weber </a>),
+    name: (<a href="https://ronquistlab.github.io/people.html#claudia">Claudia Weber </a>),
     image: 'img/ClaudiaWeber.jpg',
     title: (<>Researcher </>),
     description: (<>Claudia is a researcher at the Swedish Museum of Natural History, and is responsible for assembling the DarkTree genomes 
@@ -85,7 +85,7 @@ const DarkTreeTeam = [
     identification, and leading the Insect Biome Atlas project.</>),
   },
   {
-    name: (<a href="https://ronquistlab.github.io/people.html">Michael Felsberg </a>),
+    name: (<a href="https://liu.se/en/employee/micfe03">Michael Felsberg </a>),
     image: '/img/M_Felsberg.jpg',
     title: (<>Principal Investigator </>),
     description: (<>Michale received the PhD degree from Kiel University, Germany, in 2002, and the docent degree 
@@ -105,7 +105,7 @@ learning, domain-specific languages, and compilers, typically applied to areas w
 including phylogenetics and cyber-physical systems.</>),
   },
   {
-    name: (<a href="https://people.kth.se/~dbro/">Tom van der Valk</a>),
+    name: (<a href="https://palaeogenetics.com/tom-van-der-valk/">Tom van der Valk</a>),
     image: 'img/david2021.jpg',
     title: (<>Principal Investigator </>),
     description: (<> Tom is a Data-Driven Life Science Fellow at the Swedish Museum of Natural History.
@@ -115,7 +115,7 @@ assembly of Spruce and Pine, among the most challenging genomes assembled to dat
 computational methods for the analysis of environmental DNA samples, including Malaise trap samples.</>),
   }, 
   {
-    name: (<a href="https://people.kth.se/~dbro/">Dave Karlsson</a>),
+    name: (<a href="https://www.stationlinne.se/sv/about/personal/">Dave Karlsson</a>),
     image: 'img/Dave_K.jpg',
     title: (<>Principal Investigator </>),
     description: (<> Dave is a Researcher (Doctor in Systematic Zoology) and Managing Director of Station Linné. 
@@ -128,27 +128,51 @@ computational methods for the analysis of environmental DNA samples, including M
 // Appear in order
 const FormerMembers = [
   {
-    name: (<a href="https://">Gizem Caylak </a>),
+    name: (<a href="https://www.kth.se/profile/caylak">Gizem Çaylak </a>),
     image: 'img/caylak.jpg',
     title: (<>PhD student </>),
     description: (<>Gizem is a PhD student at KTH Royal Institute of Technology. Her research focuses on developing methods for improving inference 
     in probabilistic programming languages, with applications to phylogenetic studies.</>),
-  },
-  {
-    name: (<a href="https://">Name</a>),
-    image: 'img/dk_logo.jpg',
-    title: (<>Title</>),
-    description: (<>Description</>),
   },
 ];
 
 // List of Scientific Advisory Board
 const ScientificAdvis= [
   {
-    name: (<a href="https://">Name</a>),
-    image: 'img/dk_logo.jpg',
-    title: (<>Title</>),
-    description: (<>Description</>),
+    name: (<a href="https://www.extavourlab.com/people/cassandra-g-extavour/">Cassandra G. Extavour </a>),
+    image: 'img/C_Extavour.jpg',
+    //title: (<>Professor</>),
+    description: (<>Howard Hughes Medical Institute Investigator; Timken Professor of Organismic and Evolutionary Biology and of Molecular and Cellular Biology; Harvard College Professor</>),
+  },
+  {
+    name: (<a href="https://www.extavourlab.com/people/cassandra-g-extavour/">Rudolf Meier </a>),
+    image: 'img/r_meier.jpg',
+    //title: (<>Professor</>),
+    description: (<>Professor for integrative Biodiversity Discovery at the Natural History Museum in Berlin.</>),
+  },
+  {
+    name: (<a href="https://www.museumfuernaturkunde.berlin/en/about/team/bonnie.blaimer">Bonnie Blaimer </a>),
+    image: 'img/B_Blaimer.jpg',
+    //title: (<>Researcher</>),
+    description: (<>Scientific Head of the Hymenoptera collection at the Natural History Museum in Berlin. </>),
+  },
+  {
+    name: (<a href="https://symbio.eko.uj.edu.pl/en_GB/staff/piotr-lukasik">Piotr Łukasik </a>),
+    image: 'img/Piotr_pic.jpg',
+    //title: (<>Associated Professor</>),
+    description: (<>Associated Professor at Jagiellonian Univbersity in Kraków.</>),
+  },
+  {
+    name: (<a href="https://internt.slu.se/en/cv-originals/tomas-roslin/">Tomas Roslin </a>),
+    image: 'img/tomas-roslin.jpg',
+    //title: (<>Professor</>),
+    description: (<>Professor of insect ecology at the Department of Ecology, Swedish University of Agricultural Sciences (SLU, Uppsala) and Professor of Ecosystems and Environment Research Programme, University of Helsinki, Finland.</>),
+  },
+  {
+    name: (<a href="https://www.su.se/english/profiles/a/atack">Ayco Tack </a>),
+    image: 'img/Ayco_Tack.jpg',
+    //title: (<>Professor</>),
+    description: (<>Professor at the Department of Ecology, Environment and Plant Sciences at Stockholm University.</>),
   },
 ];
 
@@ -183,7 +207,7 @@ const Collaborators = [
     name: (<a href="">Want to get Involved?</a>),
     //image: 'img/',
     //title: (<></>),
-    description: (<>We are welcoming collaborations! If you want to get involved with the DarkTree project, go to ,<a href="https://insect-darktree.github.io/involved/get_involved">this page</a>.</>),
+    description: (<>We are welcoming collaborations! If you want to get involved with the DarkTree project go to <a href="https://insect-darktree.github.io/involved/get_involved">this page</a> to read more.</>),
   },
 ];
 
