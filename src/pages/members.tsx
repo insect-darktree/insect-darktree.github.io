@@ -106,7 +106,7 @@ including phylogenetics and cyber-physical systems.</>),
   },
   {
     name: (<a href="https://palaeogenetics.com/tom-van-der-valk/">Tom van der Valk</a>),
-    image: 'img/david2021.jpg',
+    image: 'img/Tom_vd_Valk.jpg',
     title: (<>Principal Investigator </>),
     description: (<> Tom is a Data-Driven Life Science Fellow at the Swedish Museum of Natural History.
 His research has focused on population genomics and palaeogenomics of vertebrates, and he has extensive experience in using 
@@ -152,7 +152,7 @@ const ScientificAdvis= [
   },
   {
     name: (<a href="https://www.museumfuernaturkunde.berlin/en/about/team/bonnie.blaimer">Bonnie Blaimer </a>),
-    image: 'img/B_Blaimer.jpg',
+    image: 'img/B_Blaimer.jpeg',
     //title: (<>Researcher</>),
     description: (<>Scientific Head of the Hymenoptera collection at the Natural History Museum in Berlin. </>),
   },
