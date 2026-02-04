@@ -55,10 +55,10 @@ const DarkTreeTeam = [
     </>),
   },
   {
-    name: (<a href="">Viktor Palmqvist </a>),
+    name: (<a href="">Viktor Palmkvist </a>),
     image: 'img/',
     title: (<>Reasearcher </>),
-    description: (<> Viktor ...</>),
+    description: (<> Viktor is a postdoctoral researcher at KTH Royal Institute of Technology in Stockholm.</>),
   },
   {
     name: (<a href="https://ronquistlab.github.io/people.html#tim">Thimothée Virgoulay</a>),
@@ -259,7 +259,7 @@ function PeopleSection({id, title, people}) {
 
 export default function ContributorsPage() {
   return (
-    <Layout title="Contributors" description="Contributors">
+    <Layout title="ProjectTeam" description="ProjectTeam">
       <div>
         <PeopleSection
           id="current-team"
