@@ -20,8 +20,8 @@ A large focus in the project is on data generation and methods development. We w
 1.	Discovery of novel evolutionary processes and genomic signatures in previously unexplored insect lineages.
 1.	New insights into the diversity and evolution of insect symbionts, a key but understudied component of insect biology.
 
-Publications:
-- Annotated Automatic Pruning of Universal Probabilistic Programming Languages (https://dl.acm.org/doi/full/10.1145/3731457)
+# Publications:
+- Annotated Automatic Pruning of Universal Probabilistic Programming Languages [https://dl.acm.org/doi/full/10.1145/3731457]
 
 <!-- 
 Comment part this is not show in the web site

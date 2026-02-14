@@ -8,15 +8,16 @@ const LandingpageText: React.FC = () => {
   return (
     <div className={styles.Content}>
       <div className={styles.HeaderContainer}>
-        <h3 className={styles.Tagline}>Why DarkTree?</h3>
+        <h3 className={styles.Tagline}>3,000 insect genomes</h3>
         <h4 className={styles.Description}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          The DarkTree project aims to sequence 3,000 insect genomes from the most poorly studied radiations in the insect tree of life. Many of these “dark taxa” have been neglected by taxonomists and ecologists for centuries because they are so diverse and challenging to identify. Nevertheless, they occupy key niches in insect communities, often as decomposers or parasitoids, and represent millions of years of insect genome evolution that has not been studied to date.
         </h4>
         <h4 className={styles.DescriptionBold}>
-          Because it's cool.
+          Tens of thousands of metabarcoded Malaise trap samples
         </h4>
         <h4 className={styles.Description}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          DarkTree is based on material from tens of thousands of Malaise trap samples from around the world, which have gone through DNA metabarcoding. This allows us to reliably identify the darkest regions in the insect tree, and select a balanced set of representative species for genome sequencing.
+As part of the project, we are developing and refining a state-of-the-art pipeline using genome sequencing, computer vision, and probabilistic machine learning. Read more about the project here, and how you can contribute to and benefit from this effort to advance the frontier in insect diversity research.
         </h4>
       </div>
     </div>
