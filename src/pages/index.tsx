@@ -33,8 +33,8 @@ export default function Home() {
         <LandingpageText />
         <FundingSection 
           title="Funding"
-          imageUrl="/img/funding.png"
-          description="teyjrtjm"
+          imageUrl="/img/funding_DT.jpeg"
+          description=""
         />
       </main>
     </Layout>
