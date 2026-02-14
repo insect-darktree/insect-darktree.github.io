@@ -34,6 +34,7 @@ export default function Home() {
         <FundingSection 
           title="Funding"
           imageUrl="/img/funding.png"
+          description="teyjrtjm"
         />
       </main>
     </Layout>
