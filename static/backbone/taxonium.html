@@ -4,325 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Insect tree</title>
-  <style>
-    /* Full viewport coverage */
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
-
-    #root {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #fafafa;
-      color: #333;
-    }
-
-    .taxonium-wrapper {
-        width: 100%;
-        height: 100%;
-    }
-
-    .loading-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #fafafa;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 10000;
-      transition: opacity 0.3s ease-out;
-    }
-
-    .loading-overlay.fade-out {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 3px solid #e0e0e0;
-      border-top-color: #666;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .loading-text {
-      margin-top: 16px;
-      color: #666;
-      font-size: 14px;
-    }
-
-    .selected-nodes-panel {
-      position: fixed;
-      top: 16px;
-      left: 16px;
-      width: 280px;
-      max-height: 400px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      font-size: 13px;
-    }
-
-    .selected-nodes-header {
-      padding: 10px 12px;
-      border-bottom: 1px solid #e0e0e0;
-      font-weight: 600;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #f5f5f5;
-      border-radius: 8px 8px 0 0;
-    }
-
-    .selected-nodes-header button {
-      background: none;
-      border: none;
-      color: #666;
-      cursor: pointer;
-      font-size: 12px;
-      padding: 2px 6px;
-    }
-
-    .selected-nodes-header button:hover {
-      color: #333;
-      text-decoration: underline;
-    }
-
-    .selected-nodes-list {
-      overflow-y: auto;
-      flex: 1;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-    }
-
-    .selected-nodes-list:empty::after {
-      content: "Click nodes on the tree to add them here";
-      display: block;
-      padding: 16px 12px;
-      color: #999;
-      font-style: italic;
-      text-align: center;
-    }
-
-    .selected-node-item {
-      padding: 8px 12px;
-      border-bottom: 1px solid #eee;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .selected-node-item:last-child {
-      border-bottom: none;
-    }
-
-    .selected-node-item:hover {
-      background: #f9f9f9;
-    }
-
-    .selected-node-name {
-      flex: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .selected-node-remove {
-      background: none;
-      border: none;
-      color: #999;
-      cursor: pointer;
-      font-size: 16px;
-      line-height: 1;
-      padding: 0 4px;
-    }
-
-    .selected-node-remove:hover {
-      color: #e53935;
-    }
-
-    .selected-nodes-actions {
-      padding: 8px 12px;
-      border-top: 1px solid #e0e0e0;
-      background: #f5f5f5;
-      border-radius: 0 0 8px 8px;
-    }
-
-    .copy-button {
-      width: 100%;
-      padding: 6px 12px;
-      background: #1976d2;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-
-    .copy-button:hover {
-      background: #1565c0;
-    }
-
-    .copy-button:active {
-      background: #0d47a1;
-    }
-
-    .copy-button.copied {
-      background: #43a047;
-    }
-
-    .selected-node-item-wrapper {
-      border-bottom: 1px solid #eee;
-    }
-
-    .selected-node-item-wrapper:last-child {
-      border-bottom: none;
-    }
-
-    .selected-node-metadata {
-      padding: 6px 12px 10px 12px;
-      background: #f9f9f9;
-      font-size: 12px;
-      color: #555;
-    }
-
-    .selected-node-metadata > div {
-      margin-bottom: 4px;
-    }
-
-    .selected-node-metadata > div:last-child {
-      margin-bottom: 0;
-    }
-
-    .selected-node-sequences {
-      word-break: break-word;
-      max-height: 150px;
-      overflow-y: auto;
-      font-size: 11px;
-      line-height: 1.4;
-    }
-
-    .selected-node-sequences .sequence-item {
-      margin-bottom: 2px;
-    }
-
-    .placement-legend {
-      position: fixed;
-      bottom: 16px;
-      left: 16px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
-      z-index: 1000;
-      padding: 10px 12px;
-      font-size: 12px;
-    }
-
-    .placement-legend-header {
-      font-weight: 600;
-      margin-bottom: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .placement-legend-toggle {
-      background: none;
-      border: none;
-      color: #666;
-      cursor: pointer;
-      font-size: 10px;
-      padding: 2px 4px;
-    }
-
-    .placement-legend-toggle:hover {
-      color: #333;
-    }
-
-    .placement-legend-bar {
-      width: 260px;
-      height: 16px;
-      border-radius: 3px;
-      margin-bottom: 2px;
-    }
-
-    .placement-legend-ticks {
-      position: relative;
-      width: 260px;
-      height: 6px;
-    }
-
-    .placement-legend-tick-mark {
-      position: absolute;
-      width: 1px;
-      height: 6px;
-      background: #666;
-      transform: translateX(-50%);
-    }
-
-    .placement-legend-tick-mark:first-child {
-      transform: translateX(0);
-    }
-
-    .placement-legend-tick-mark:last-child {
-      transform: translateX(-100%);
-    }
-
-    .placement-legend-labels {
-      position: relative;
-      width: 260px;
-      color: #666;
-      font-size: 10px;
-      height: 14px;
-    }
-
-    .placement-legend-tick {
-      position: absolute;
-      transform: translateX(-50%);
-      text-align: center;
-    }
-
-    .placement-legend-tick:first-child {
-      transform: translateX(0);
-    }
-
-    .placement-legend-tick:last-child {
-      transform: translateX(-100%);
-    }
-
-    .placement-legend.minimized {
-      padding: 6px 10px;
-    }
-
-    .placement-legend.minimized .placement-legend-bar,
-    .placement-legend.minimized .placement-legend-labels {
-      display: none;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div id="loading-overlay" class="loading-overlay">
@@ -336,265 +18,27 @@
     import { createRoot } from 'https://esm.sh/react-dom@19/client';
     import Taxonium from 'https://esm.sh/taxonium-component';
 
-    const { createElement: h, useState, useEffect, useCallback, useRef } = React;
+    // Import local modules
+    import { createPlacementCountLegend, generateColorMapping } from './color-legend.js';
+    import { createSequencesModal } from './sequences.js';
 
-    // Accessible Sunset palette from Bokeh (Paul Tol's scheme)
-    const SUNSET_PALETTE = [
-      [54, 75, 154],   // #364B9A - deep blue
-      [74, 123, 183],  // #4A7BB7
-      [110, 166, 205], // #6EA6CD
-      [152, 202, 225], // #98CAE1
-      [194, 228, 239], // #C2E4EF
-      [234, 236, 204], // #EAECCC - pale yellow
-      [254, 218, 139], // #FEDA8B
-      [253, 179, 102], // #FDB366
-      [246, 126, 75],  // #F67E4B
-      [221, 61, 45],   // #DD3D2D
-      [165, 0, 38]     // #A50026 - deep red
-    ];
+    const { createElement: h, useState, useEffect, useCallback } = React;
 
-    // Placement Count Legend Component
-    function PlacementCountLegend({ maxValue, visible }) {
-      const [minimized, setMinimized] = useState(false);
+    // Create components with React
+    const PlacementCountLegend = createPlacementCountLegend(React);
+    const SequencesModal = createSequencesModal(React);
 
-      // Collapse/expand Taxonium's default legend based on visibility
-      useEffect(() => {
-        const toggleDefaultLegend = (shouldCollapse) => {
-          // Look for elements containing triangle Unicode characters
-          // Down triangles indicate expanded state, up triangles indicate collapsed state
-          const downTriangles = ['▼', '▾', '▿', '⌄', '˅', '⋁', '∨'];
-          const upTriangles = ['▲', '▴', '▵', '⌃', '˄', '⋀', '∧'];
-          const targetChars = shouldCollapse ? downTriangles : upTriangles;
-
-          const textWalker = document.createTreeWalker(
-            document.body,
-            NodeFilter.SHOW_TEXT,
-            null,
-            false
-          );
-
-          while (textWalker.nextNode()) {
-            const text = textWalker.currentNode.textContent;
-            if (targetChars.some(char => text.includes(char))) {
-              let el = textWalker.currentNode.parentElement;
-              if (el.closest('.placement-legend') || el.closest('.selected-nodes-panel')) continue;
-
-              // Find clickable ancestor
-              while (el && el !== document.body) {
-                const style = window.getComputedStyle(el);
-                if (style.cursor === 'pointer' || el.tagName === 'BUTTON' || el.onclick) {
-                  console.log(shouldCollapse ? 'Collapsing' : 'Expanding', 'default legend');
-                  el.click();
-                  return true;
-                }
-                el = el.parentElement;
-              }
-            }
-          }
-
-          return false;
-        };
-
-        // Delay to allow Taxonium to render
-        const timer = setTimeout(() => {
-          if (visible) {
-            toggleDefaultLegend(true); // Collapse when our legend is shown
-          } else {
-            toggleDefaultLegend(false); // Expand when our legend is hidden
-          }
-        }, 1500);
-
-        return () => clearTimeout(timer);
-      }, [visible]);
-
-      if (!visible || maxValue <= 0) return null;
-
-      // Build gradient stops using log scale (matching the actual color mapping)
-      const gradientStops = ['rgb(180,180,180) 0%']; // Grey for zero at 0%
-      const logMax = Math.log(maxValue + 1);
-
-      // Add stops at key values to show log scale distribution
-      const keyValues = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, maxValue]
-        .filter(v => v <= maxValue);
-
-      keyValues.forEach(value => {
-        const t = Math.log(value + 1) / logMax;
-        const paletteIdx = Math.min(
-          Math.floor(t * (SUNSET_PALETTE.length - 0.01)),
-          SUNSET_PALETTE.length - 1
-        );
-        const color = SUNSET_PALETTE[paletteIdx];
-        // Position based on log scale, but squeeze into 5-100% range (0-5% is grey for zero)
-        const percent = 5 + (t * 95);
-        gradientStops.push(`rgb(${color.join(',')}) ${percent.toFixed(1)}%`);
-      });
-
-      const gradient = `linear-gradient(to right, ${gradientStops.join(', ')})`;
-
-      // Calculate tick positions for log scale (0, and ~3 intermediate values, plus max)
-      const tickValues = [0];
-      // Add intermediate ticks at roughly equal log intervals
-      const numTicks = 3;
-      for (let i = 1; i <= numTicks; i++) {
-        const t = i / (numTicks + 1);
-        const value = Math.round(Math.exp(t * logMax) - 1);
-        if (value > 0 && value < maxValue) {
-          tickValues.push(value);
-        }
-      }
-      tickValues.push(maxValue);
-
-      return h('div', { className: `placement-legend${minimized ? ' minimized' : ''}` },
-        h('div', { className: 'placement-legend-header' },
-          h('span', null, 'Placement Count'),
-          h('button', {
-            className: 'placement-legend-toggle',
-            onClick: () => setMinimized(!minimized)
-          }, minimized ? 'expand' : 'minimize')
-        ),
-        h('div', {
-          className: 'placement-legend-bar',
-          style: { background: gradient }
-        }),
-        h('div', { className: 'placement-legend-ticks' },
-          tickValues.map((value, i) => {
-            let percent;
-            if (value === 0) {
-              percent = 0;
-            } else {
-              const t = Math.log(value + 1) / logMax;
-              percent = 5 + (t * 95);
-            }
-            return h('div', {
-              key: i,
-              className: 'placement-legend-tick-mark',
-              style: { left: `${percent}%` }
-            });
-          })
-        ),
-        h('div', { className: 'placement-legend-labels' },
-          tickValues.map((value, i) => {
-            // Calculate position: 0 at 0%, max at 100%, others based on log scale
-            let percent;
-            if (value === 0) {
-              percent = 0;
-            } else {
-              const t = Math.log(value + 1) / logMax;
-              percent = 5 + (t * 95);
-            }
-            return h('span', {
-              key: i,
-              className: 'placement-legend-tick',
-              style: { left: `${percent}%` }
-            }, value.toLocaleString());
-          })
-        )
-      );
-    }
-
-    // Selected Nodes Panel Component
-    function SelectedNodesPanel({ nodes, onRemove, onClear }) {
-      const [copied, setCopied] = useState(false);
-      const [expanded, setExpanded] = useState({});
-
-      const toggleExpand = (nodeId) => {
-        setExpanded(prev => ({ ...prev, [nodeId]: !prev[nodeId] }));
-      };
-
-      const handleCopy = () => {
-        const text = nodes.map(n => {
-          let line = n.name;
-          if (n.metadata) {
-            if (n.metadata.common_name) line += `\t${n.metadata.common_name}`;
-            if (n.metadata.subclass) line += `\t${n.metadata.subclass}`;
-            if (n.metadata.order) line += `\t${n.metadata.order}`;
-            if (n.metadata.superfamily) line += `\t${n.metadata.superfamily}`;
-            if (n.metadata.family) line += `\t${n.metadata.family}`;
-            if (n.metadata.subfamily) line += `\t${n.metadata.subfamily}`;
-            if (n.metadata.genus) line += `\t${n.metadata.genus}`;
-            if (n.metadata.placement_count !== undefined) line += `\tPlacements: ${n.metadata.placement_count}`;
-          }
-          return line;
-        }).join('\n');
-        navigator.clipboard.writeText(text).then(() => {
-          setCopied(true);
-          setTimeout(() => setCopied(false), 2000);
-        });
-      };
-
-      return h('div', { className: 'selected-nodes-panel' },
-        h('div', { className: 'selected-nodes-header' },
-          h('span', null, `Selected Nodes (${nodes.length})`),
-          nodes.length > 0 && h('button', { onClick: onClear }, 'Clear all')
-        ),
-        h('ul', { className: 'selected-nodes-list' },
-          nodes.map((node, index) =>
-            h('li', { key: node.id || index, className: 'selected-node-item-wrapper' },
-              h('div', { className: 'selected-node-item' },
-                h('span', {
-                  className: 'selected-node-name',
-                  title: node.name,
-                  onClick: () => toggleExpand(node.id),
-                  style: { cursor: 'pointer' }
-                }, node.name),
-                h('button', {
-                  className: 'selected-node-remove',
-                  onClick: () => onRemove(node.id),
-                  title: 'Remove'
-                }, '\u00d7')
-              ),
-              expanded[node.id] && node.metadata && h('div', { className: 'selected-node-metadata' },
-                node.metadata.ThumbnailURL &&
-                  h('div', { className: 'selected-node-image' },
-                    h('img', {
-                      src: node.metadata.ThumbnailURL,
-                      alt: node.name,
-                      style: { maxWidth: '100%', maxHeight: '150px', borderRadius: '4px', marginBottom: '8px' }
-                    })
-                  ),
-                node.metadata.common_name &&
-                  h('div', null, `Common name: ${node.metadata.common_name}`),
-                node.metadata.subclass &&
-                  h('div', null, `Subclass: ${node.metadata.subclass}`),
-                node.metadata.order &&
-                  h('div', null, `Order: ${node.metadata.order}`),
-                node.metadata.superfamily &&
-                  h('div', null, `Superfamily: ${node.metadata.superfamily}`),
-                node.metadata.family &&
-                  h('div', null, `Family: ${node.metadata.family}`),
-                node.metadata.subfamily &&
-                  h('div', null, `Subfamily: ${node.metadata.subfamily}`),
-                node.metadata.genus &&
-                  h('div', null, `Genus: ${node.metadata.genus}`),
-                node.metadata.placement_count !== undefined &&
-                  h('div', null, `Placements: ${node.metadata.placement_count}`),
-                node.metadata.top_sequences &&
-                  h('div', { className: 'selected-node-sequences' },
-                    h('div', null, 'Top sequences:'),
-                    ...node.metadata.top_sequences.split(';').map((seq, i) =>
-                      h('div', { key: i, className: 'sequence-item' }, seq.trim())
-                    )
-                  )
-              )
-            )
-          )
-        ),
-        nodes.length > 0 && h('div', { className: 'selected-nodes-actions' },
-          h('button', {
-            className: `copy-button${copied ? ' copied' : ''}`,
-            onClick: handleCopy
-          }, copied ? 'Copied!' : 'Copy to clipboard')
-        )
-      );
-    }
+    // Promise-based delay helper
+    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
     function App() {
       const [sourceData, setSourceData] = useState(null);
       const [error, setError] = useState(null);
       const [query, setQuery] = useState({});
-      const [selectedNodes, setSelectedNodes] = useState([]);
       const [maxPlacementCount, setMaxPlacementCount] = useState(0);
       const [colorByField, setColorByField] = useState('meta_placement_count');
+      const [sequencesModalNode, setSequencesModalNode] = useState(null);
+      const [lastViewedNode, setLastViewedNode] = useState(null);
 
       // Handler to update query state (used by Taxonium for view/selection state)
       const updateQuery = (newQuery) => {
@@ -605,144 +49,94 @@
         }
       };
 
-      // Handler for when node details are loaded - adds to our list with full metadata
+      // Handler for when node details are loaded - stores last viewed node for floating button
       const handleNodeDetailsLoaded = useCallback((nodeId, nodeDetails) => {
         if (nodeId === null || !nodeDetails) return;
 
-        // Extract the node name from details - prefer meta_name from metadata
-        const nodeName = nodeDetails.meta_name
-          || nodeDetails.name
-          || nodeDetails.label
-          || `Node ${nodeId}`;
+        const nodeName = nodeDetails.meta_name || nodeDetails.name || nodeDetails.label || `Node ${nodeId}`;
 
-        // Extract metadata fields
-        const metadata = {
-          common_name: nodeDetails.meta_common_name,
-          subclass: nodeDetails.meta_subclass,
-          order: nodeDetails.meta_order,
-          superfamily: nodeDetails.meta_superfamily,
-          family: nodeDetails.meta_family,
-          subfamily: nodeDetails.meta_subfamily,
-          genus: nodeDetails.meta_genus,
-          placement_count: nodeDetails.meta_placement_count,
-          top_sequences: nodeDetails.meta_top_sequences,
-          ThumbnailURL: nodeDetails.meta_ThumbnailURL,
-        };
+        // Extract metadata fields (strip meta_ prefix)
+        const metaFields = ['common_name', 'clade', 'subclass', 'order', 'superfamily', 'family',
+                           'subfamily', 'genus', 'node_number', 'placement_count', 'top_sequences',
+                           'other_sequences', 'ThumbnailURL'];
+        const metadata = Object.fromEntries(
+          metaFields.map(field => [field, nodeDetails[`meta_${field}`]])
+        );
 
-        setSelectedNodes(prev => {
-          // Don't add duplicates
-          if (prev.some(n => n.id === nodeId)) {
-            return prev;
-          }
-          return [...prev, { id: nodeId, name: String(nodeName), metadata }];
-        });
-      }, []);
-
-      // Handler to remove a node from the list
-      const handleRemoveNode = useCallback((nodeId) => {
-        setSelectedNodes(prev => prev.filter(n => n.id !== nodeId));
-      }, []);
-
-      // Handler to clear all nodes
-      const handleClearNodes = useCallback(() => {
-        setSelectedNodes([]);
+        setLastViewedNode({ id: nodeId, name: String(nodeName), metadata });
       }, []);
 
       // Workaround: Enable "Display points for internal nodes" after component loads
       useEffect(() => {
         if (!sourceData) return;
 
-        const enableInternalNodes = () => {
-          // Find and click the settings button (gear icon) to open the modal
-          const settingsButton = document.querySelector('button[aria-label="Settings"]')
-            || document.querySelector('button svg[data-icon="cog"]')?.closest('button')
-            || Array.from(document.querySelectorAll('button')).find(btn =>
-                btn.querySelector('svg') && btn.textContent === '');
+        let cancelled = false;
 
-          if (!settingsButton) {
-            console.log('Settings button not found, retrying...');
-            return false;
-          }
-
-          settingsButton.click();
-
-          // Wait for modal to open, then find the checkboxes
-          setTimeout(() => {
-            const labels = Array.from(document.querySelectorAll('label'));
-
-            // Enable "Display points for internal nodes"
-            const pointsLabel = labels.find(label =>
-              label.textContent.includes('Display points for internal nodes')
-            );
-            const pointsCheckbox = pointsLabel?.querySelector('input[type="checkbox"]');
-            if (pointsCheckbox && !pointsCheckbox.checked) {
-              pointsCheckbox.click();
-              console.log('Enabled: Display points for internal nodes');
-            }
-
-            // Enable "Display labels for internal nodes if present"
-            const labelsLabel = labels.find(label =>
-              label.textContent.includes('Display labels for internal nodes')
-            );
-            const labelsCheckbox = labelsLabel?.querySelector('input[type="checkbox"]');
-            if (labelsCheckbox && !labelsCheckbox.checked) {
-              labelsCheckbox.click();
-              console.log('Enabled: Display labels for internal nodes if present');
-            }
-
-            // Close the modal by clicking the close button or backdrop
-            setTimeout(() => {
-              // Try clicking a close button (X)
-              const closeButton = document.querySelector('[aria-label="Close"]')
-                || document.querySelector('button svg[data-icon="times"]')?.closest('button')
-                || document.querySelector('[role="dialog"] button');
-
-              if (closeButton) {
-                closeButton.click();
-              } else {
-                // Try clicking the backdrop/overlay
-                const backdrop = document.querySelector('[role="dialog"]')?.parentElement;
-                if (backdrop) {
-                  backdrop.click();
-                }
-              }
-
-              // Fade out the loading overlay after modal is closed
-              setTimeout(() => {
-                const overlay = document.getElementById('loading-overlay');
-                if (overlay) {
-                  overlay.classList.add('fade-out');
-                  // Remove from DOM after transition completes
-                  setTimeout(() => overlay.remove(), 300);
-                }
-              }, 100);
-            }, 100);
-          }, 300);
-
-          return true;
-        };
-
-        // Retry until the settings button is available
-        const timer = setInterval(() => {
-          if (enableInternalNodes()) {
-            clearInterval(timer);
-          }
-        }, 1000);
-
-        // Stop trying after 10 seconds and remove overlay anyway
-        const timeout = setTimeout(() => {
-          clearInterval(timer);
+        const hideOverlay = async () => {
           const overlay = document.getElementById('loading-overlay');
           if (overlay) {
             overlay.classList.add('fade-out');
-            setTimeout(() => overlay.remove(), 300);
+            await delay(300);
+            overlay.remove();
           }
-        }, 10000);
-
-        return () => {
-          clearInterval(timer);
-          clearTimeout(timeout);
         };
+
+        const enableCheckbox = (labelText) => {
+          const label = Array.from(document.querySelectorAll('label'))
+            .find(l => l.textContent.includes(labelText));
+          const checkbox = label?.querySelector('input[type="checkbox"]');
+          if (checkbox && !checkbox.checked) {
+            checkbox.click();
+            console.log('Enabled:', labelText);
+          }
+        };
+
+        const findSettingsButton = () =>
+          document.querySelector('button[aria-label="Settings"]')
+          || document.querySelector('button svg[data-icon="cog"]')?.closest('button')
+          || Array.from(document.querySelectorAll('button')).find(btn =>
+              btn.querySelector('svg') && btn.textContent === '');
+
+        const closeModal = () => {
+          const closeButton = document.querySelector('[aria-label="Close"]')
+            || document.querySelector('button svg[data-icon="times"]')?.closest('button')
+            || document.querySelector('[role="dialog"] button');
+          if (closeButton) {
+            closeButton.click();
+          } else {
+            document.querySelector('[role="dialog"]')?.parentElement?.click();
+          }
+        };
+
+        const configureSettings = async () => {
+          // Wait for settings button to appear (max 10 seconds)
+          let settingsButton;
+          for (let i = 0; i < 10 && !cancelled; i++) {
+            settingsButton = findSettingsButton();
+            if (settingsButton) break;
+            await delay(1000);
+          }
+
+          if (cancelled || !settingsButton) {
+            await hideOverlay();
+            return;
+          }
+
+          settingsButton.click();
+          await delay(300);
+
+          enableCheckbox('Display points for internal nodes');
+          enableCheckbox('Display labels for internal nodes if present');
+
+          await delay(100);
+          closeModal();
+          await delay(100);
+          await hideOverlay();
+        };
+
+        configureSettings();
+
+        return () => { cancelled = true; };
       }, [sourceData]);
 
       useEffect(() => {
@@ -770,7 +164,8 @@
               const header = lines[0].split('\t');
 
               // Find columns to remove (in reverse order to preserve indices)
-              const columnsToRemove = ['other_sequences', 'placement_bin']
+              // Note: keep other_sequences for the sequences modal, just don't display in Taxonium
+              const columnsToRemove = ['placement_bin']
                 .map(col => header.indexOf(col))
                 .filter(idx => idx !== -1)
                 .sort((a, b) => b - a);  // Sort descending to remove from end first
@@ -806,22 +201,7 @@
               });
 
               // Generate colors for all integers from 0 to maxValue using log scale
-              // This ensures consistent colors regardless of which field is selected
-              colorMapping["0"] = [180, 180, 180]; // Grey for zero
-
-              if (maxValue > 0) {
-                const logMax = Math.log(maxValue + 1);
-                for (let i = 1; i <= maxValue; i++) {
-                  // Use logarithmic scale to spread colors better
-                  const t = Math.log(i + 1) / logMax;
-                  const paletteIdx = Math.min(
-                    Math.floor(t * (SUNSET_PALETTE.length - 0.01)),
-                    SUNSET_PALETTE.length - 1
-                  );
-                  colorMapping[String(i)] = SUNSET_PALETTE[paletteIdx];
-                }
-              }
-
+              colorMapping = generateColorMapping(maxValue);
               console.log('Generated colorMapping for values 0 to', maxValue);
               setMaxPlacementCount(maxValue);
             }
@@ -853,30 +233,19 @@
         if (!sourceData) return;
 
         const checkColorField = () => {
-          // Look for the color-by dropdown/select in Taxonium's UI
-          const selects = document.querySelectorAll('select');
-          for (const select of selects) {
-            // Check if this is the color-by selector by looking at options
-            const options = Array.from(select.options);
-            const hasPlacementCount = options.some(opt =>
+          for (const select of document.querySelectorAll('select')) {
+            const hasPlacementCount = Array.from(select.options).some(opt =>
               opt.value?.includes('placement_count') || opt.text?.includes('placement_count')
             );
             if (hasPlacementCount) {
-              const selectedValue = select.value;
-              if (selectedValue?.includes('placement_count')) {
-                setColorByField('meta_placement_count');
-              } else {
-                setColorByField(selectedValue || '');
-              }
+              setColorByField(select.value?.includes('placement_count') ? 'meta_placement_count' : select.value || '');
               break;
             }
           }
         };
 
-        // Check periodically since Taxonium may render controls later
         const interval = setInterval(checkColorField, 1000);
         checkColorField();
-
         return () => clearInterval(interval);
       }, [sourceData]);
 
@@ -888,38 +257,37 @@
         return h('div', null, 'Loading Taxonium data...');
       }
 
-      // Render the Taxonium component with documented props and selected nodes panel
+      const isPlacementCountColor = colorByField === 'meta_placement_count' || colorByField?.includes('placement_count');
+
       return h('div', { className: 'taxonium taxonium-wrapper' },
         h(Taxonium, {
-          sourceData: sourceData,
+          sourceData,
           configDict: {
             defaultColorByField: "meta_placement_count",
             colorMapping: sourceData.colorMapping || {},
             keys_to_display: [
-              "meta_common_name",
-              "meta_subclass",
-              "meta_order",
-              "meta_superfamily",
-              "meta_family",
-              "meta_subfamily",
-              "meta_genus",
-              "meta_placement_count",
-              "meta_top_sequences"
+              "meta_common_name", "meta_clade", "meta_subclass", "meta_order", "meta_superfamily",
+              "meta_family", "meta_subfamily", "meta_genus", "meta_node_number",
+              "meta_placement_count", "meta_top_sequences"
             ]
           },
-          query: query,
-          updateQuery: updateQuery,
+          query,
+          updateQuery,
           onNodeDetailsLoaded: handleNodeDetailsLoaded,
         }),
-        h(SelectedNodesPanel, {
-          nodes: selectedNodes,
-          onRemove: handleRemoveNode,
-          onClear: handleClearNodes,
+        sequencesModalNode && h(SequencesModal, {
+          node: sequencesModalNode,
+          onClose: () => setSequencesModalNode(null),
         }),
-        h(PlacementCountLegend, {
-          maxValue: maxPlacementCount,
-          visible: colorByField === 'meta_placement_count' || colorByField?.includes('placement_count'),
-        })
+        lastViewedNode?.metadata?.top_sequences && h('button', {
+          className: 'view-sequences-floating-btn',
+          onClick: () => setSequencesModalNode(lastViewedNode),
+          title: `View all barcodes for ${lastViewedNode.name}`
+        },
+          h('span', null, 'View all barcodes:'),
+          h('span', { className: 'node-name' }, lastViewedNode.name)
+        ),
+        h(PlacementCountLegend, { maxValue: maxPlacementCount, visible: isPlacementCountColor })
       );
     }
 
