@@ -205,7 +205,7 @@ const Collaborators = [
   },
   {
     name: (<a href="">Want to get Involved?</a>),
-    //image: 'img/',
+    image: 'img/Temp_logo.jpg',
     //title: (<></>),
     description: (<>We are welcoming collaborations! If you want to get involved with the DarkTree project go to <a href="https://insect-darktree.github.io/involved/get_involved">this page</a> to read more.</>),
   },
