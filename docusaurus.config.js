@@ -7,7 +7,7 @@ const darkCodeTheme = themes.dracula;
 
 const config = {
   title: 'DarkTree',
-  tagline: 'Mapping the DarkTaxa',
+  tagline: 'Charting the dark regions of the insect tree',
   url: 'https://insect-darktree.github.io', // Your website URL
   baseUrl: '/',
   projectName: 'insect-darktree.github.io',
