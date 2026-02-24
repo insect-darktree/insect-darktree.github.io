@@ -8,7 +8,6 @@ const LandingpageText: React.FC = () => {
   return (
     <div className={styles.Content}>
       <div className={styles.HeaderContainer}>
-        <h3 className={styles.Tagline}>Charting the dark regions of the insect tree</h3>
         <h4 className={styles.DescriptionBold}>
           The DarkTree project aims to sequence 3,000 insect genomes from the most poorly studied radiations in the insect tree of life. Many of these “dark taxa” have been neglected by taxonomists and ecologists for centuries because they are so diverse and challenging to identify. Nevertheless, they occupy key niches in insect communities, often as decomposers or parasitoids, and represent millions of years of insect genome evolution that has not been studied to date.
         </h4>
