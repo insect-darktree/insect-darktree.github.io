@@ -15,7 +15,7 @@ const LandingpageText: React.FC = () => {
           DarkTree is based on material from tens of thousands of Malaise trap samples from around the world, which have gone through DNA metabarcoding. This allows us to reliably identify the darkest regions in the insect tree, and select a balanced set of representative species for genome sequencing.
           </h4>
           <h4 className={styles.DescriptionBold}>
-As part of the project, we are developing and refining a state-of-the-art pipeline using genome sequencing, computer vision, and probabilistic machine learning. Read more about the project here, and how you can contribute to and benefit from this effort to advance the frontier in insect diversity research.
+As part of the project, we are developing and refining a state-of-the-art pipeline using genome sequencing, computer vision, and probabilistic machine learning. Read more about the project here [https://insect-darktree.github.io/docs/first_glance], and how you can contribute to and benefit from this effort to advance the frontier in insect diversity research.
         </h4>
       </div>
     </div>
