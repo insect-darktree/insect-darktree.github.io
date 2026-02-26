@@ -5,4 +5,14 @@ sidebar_position: 1
 
 # News
 
-"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+
+### February 2026 
+Viktor Palmkvist received the best paper award at the inauguration of the Department of Computing and Learning Systems. Title: “Reactive Graphs for Efficient Markov Chain Monte Carlo Inference”
+
+### August 2025
+New research article on how to make probabilistic tree inference more efficient. Title “Annotated Automatic Pruning of Universal Probabilistic Programming Languages”, published in ACM Transactions on Probabilistic Machine Learning, Volume 1, Issue, https://dl.acm.org/doi/full/10.1145/3731457.
+
+### March 2025
+![Retreat2025](../static/img/DarkTreeRetreat.png)
+*Project kick-off meeting on Öland. DarkTree team meets in person for the first time.*
+
