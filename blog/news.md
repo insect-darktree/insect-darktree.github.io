@@ -10,6 +10,7 @@ sidebar_position: 1
 Viktor Palmkvist received the best poster award at the inauguration of the Department of Computing and Learning Systems. Title: “Reactive Graphs for Efficient Markov Chain Monte Carlo Inference”
 
 ### August 2025
+![Paper1](../static/img/firstpage.png)
 New research article on how to make probabilistic tree inference more efficient. Title “Annotated Automatic Pruning of Universal Probabilistic Programming Languages”, published in ACM Transactions on Probabilistic Machine Learning, Volume 1, Issue, https://dl.acm.org/doi/full/10.1145/3731457.
 
 ### March 2025
