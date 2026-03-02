@@ -81,7 +81,7 @@ const config = {
         title: 'DarkTree',
         logo: {
           alt: 'DarkTree Logo',
-          src: 'img/Temp_logo.jpg',
+          src: 'img/DarkTreeLogo.png',
         },
         items: [          
           {
