@@ -56,7 +56,7 @@ const DarkTreeTeam = [
   },
   {
     name: (<a href="">Viktor Palmkvist </a>),
-    image: 'img/',
+    image: 'img/Viktor_P.jpg',
     title: (<>Reasearcher </>),
     description: (<> Viktor is a postdoctoral researcher at KTH Royal Institute of Technology in Stockholm.</>),
   },
@@ -195,7 +195,7 @@ const Collaborators = [
     name: (<a href="https://">Cristina Lupaşcu-Vasilița</a>),
     image: 'img/Vasilita.jpg',
     title: (<>Researcher</>),
-    description: (<>Doctoral candidate and GBOL Project Manager at the Natural History Museum in Stuttgart. Researcher at the Karsruhe Institue of Technology focusing on CT-scanning of insect specimens. </>),
+    description: (<>Doctoral candidate at the State Museum of Natural History in Stuttgart, Department of Entomology, focusing on dark taxa. Researcher at the Karlsruhe Institute of Technology focusing on the integration of synchrotron-based CT-scanning and DNA sequencing of insects. </>),
   },
   {
     name: (<a href="https://www.ips.kit.edu/2890_5177.php">Thomas van de Kamp</a>),
