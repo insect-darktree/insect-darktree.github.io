@@ -1,6 +1,7 @@
 ---
 id: index
-sidebar_position: 2
+sidebar_position: 1
+sidebar_label: Project description
 ---
 
 #  Building a Representative Genome Tree of Insects
