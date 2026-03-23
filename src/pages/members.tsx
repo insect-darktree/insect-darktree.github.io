@@ -209,7 +209,13 @@ const Collaborators = [
     //title: (<></>),
     description: (<>We are welcoming collaborations! If you want to get involved with the DarkTree project go to <a href="https://insect-darktree.github.io/involved/get_involved">this page</a> to read more.</>),
   },
-];
+  {
+    name: (<a href="">Emily Hartop</a>),
+    image: 'img/Hartopsquare.jpg',
+    title: (<>Researcher</>),
+    description: (<>Emily is an Associate Professor at NTNU in Trondheim, Norway. She is an entomologist specialising in dark taxa, with a focus on scuttle flies (Diptera: Phoridae). She contributes taxonomic expertise on hyperdiverse and under-described insect lineages within the DarkTree project.</>),
+  },
+  ];
 
 // --- Person card ---
 function Person({name, title, image, description}) {
