@@ -5,6 +5,15 @@ sidebar_position: 1
 
 # News
 
+### May 2026 
+![Art1](../static/img/Art1.jpeg)
+![Art2](../static/img/Art2.jpeg)
+
+Part of the DarkTree team contributed to the scientific-artistic exhibition bringing together art and insect research in response to the global biodiversity crisis. Centering on insects as both ecological indicators and cultural symbols, the project examined how science and art can jointly engage with questions of environmental change and coexistence.
+
+### March 2026 
+![Retreat2026](../static/img/DarkTreeRetreat2026.jpeg)
+*Annual project retreat on Öland. Discussions, presentations and hands-on workshops.*
 
 ### February 2026 
 Viktor Palmkvist received the best poster award at the inauguration of the Department of Computing and Learning Systems. Title: “Reactive Graphs for Efficient Markov Chain Monte Carlo Inference”
