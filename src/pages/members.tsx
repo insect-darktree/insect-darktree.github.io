@@ -215,6 +215,12 @@ const Collaborators = [
     title: (<>Researcher</>),
     description: (<>Emily is an Associate Professor at NTNU in Trondheim, Norway. She is an entomologist specialising in dark taxa, with a focus on scuttle flies (Diptera: Phoridae). She contributes taxonomic expertise on hyperdiverse and under-described insect lineages within the DarkTree project.</>),
   },
+  {
+    name: (<a href="">Jessica Awad</a>),
+    image: 'img/JessAwad.jpg',
+    title: (<>Researcher</>),
+    description: (<>Emily is a Researcher at Naturalis Biodiversity Center in Leiden, Netherlands. She is an entomologist specialising in dark taxa, with a focus on microscopic parasitoid wasps that lay their eggs inside gall midges (Hymenoptera: Platygastrinae). </>),
+  },
   ];
 
 // --- Person card ---
