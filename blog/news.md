@@ -6,7 +6,7 @@ sidebar_position: 1
 # News
 
 ### August 2026 
-![BioSyst2026](../static/img/BioSyst2026.jpeg)
+![BioSyst2026](../static/img/BioSyst2026.jpg)
 *Fredrik Ronquist talked about the DarkTree at the Biosystematics Conference in Uppsala (BioSyst2026).*
 
 ### May 2026 
