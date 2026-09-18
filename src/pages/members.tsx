@@ -204,12 +204,6 @@ const Collaborators = [
     description: (<>Head of the IPS/LAS BioLab at Karlsruhe Institute of Technology. PI for morphological imaging in life sciences. Coordinator for the research topic “Building Blocks of Life” within the Helmholtz program “From Matter to Materials and Life”.</>),
   },
   {
-    name: (<a href="">Want to get Involved?</a>),
-    image: 'img/DarkTreeLogo.png',
-    //title: (<></>),
-    description: (<>We are welcoming collaborations! If you want to get involved with the DarkTree project go to <a href="https://insect-darktree.github.io/involved/get_involved">this page</a> to read more.</>),
-  },
-  {
     name: (<a href="">Emily Hartop</a>),
     image: 'img/Hartopsquare.jpg',
     title: (<>Researcher</>),
@@ -219,7 +213,13 @@ const Collaborators = [
     name: (<a href="">Jessica Awad</a>),
     image: 'img/JessAwad.jpg',
     title: (<>Researcher</>),
-    description: (<>Emily is a Researcher at Naturalis Biodiversity Center in Leiden, Netherlands. She is an entomologist specialising in dark taxa, with a focus on microscopic parasitoid wasps that lay their eggs inside gall midges (Hymenoptera: Platygastrinae). </>),
+    description: (<>Jessica is a Researcher at Naturalis Biodiversity Center in Leiden, Netherlands. She is an entomologist specialising in dark taxa, with a focus on microscopic parasitoid wasps that lay their eggs inside gall midges (Hymenoptera: Platygastrinae). </>),
+  },
+  {
+    name: (<a href="">Want to get Involved?</a>),
+    image: 'img/DarkTreeLogo.png',
+    //title: (<></>),
+    description: (<>We are welcoming collaborations! If you want to get involved with the DarkTree project go to <a href="https://insect-darktree.github.io/involved/get_involved">this page</a> to read more.</>),
   },
   ];
 
