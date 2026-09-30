@@ -5,6 +5,14 @@ sidebar_position: 1
 
 # News
 
+### September 2026 
+DarkTree has uploaded its first batch of 792 specimen images and barcodes to BOLD. 
+This marks an important step in making our data accessible to the wider scientific community. BOLD provides a global platform for storing and sharing DNA barcode data, supporting species identification, biodiversity research, and future studies.
+Check our growing dataset [here](https://portal.boldsystems.org/result?query=DS-DARKTREE%5Brecordsetcode%5D).
+
+![BOLD1](../static/img/BOLD_Sept_2026.jpg)
+*DarkTree proejct on BOLD.*
+
 ### August 2026 
 ![BioSyst2026](../static/img/BioSyst2026.jpg)
 *Fredrik Ronquist talked about the DarkTree at the Biosystematics Conference in Uppsala (BioSyst2026).*
