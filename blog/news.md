@@ -6,16 +6,19 @@ sidebar_position: 1
 # News
 
 ### October 2026 
-1. Fredrik talked about scaling up insect diversity research at Hymenoptera Days, organized by the State Museum of Natural History in Stuttgart. It was a fantastic conference and we are thankful to the organizers. The talk was recorded and can be viewed [here](https://www.youtube.com/watch?v=WIhODP9HEFQ).
-
-2. Fredrik and Ela met with our German DarkTree collaborators, Cristina Vasilita-Lupascu and Thomas van der Kamp, experts in high-resolution micro-CT imaging of tiny insects using synchrotron radiation.
+Fredrik and Ela met with our German DarkTree collaborators, Cristina Vasilita-Lupascu and Thomas van der Kamp, experts in high-resolution micro-CT imaging of tiny insects using synchrotron radiation.
 
 During their visit, they toured two synchrotron facilities operated by KIT in Karlsruhe and DESY in Hamburg, where DarkTree specimens are being scanned. The visit offered a fascinating insight into the technology behind the project and the opportunity to see how these advanced techniques reveal insect morphology in unprecedented detail.
 
 A great opportunity to connect, exchange ideas, and see the science behind DarkTree in action!
 
 ![DESY1](../static/img/DESY1.jpg)
-*Four biologists at the synchrotron.*
+*Four biologists happy to make use of the synchrotron.*
+
+### October 2026 
+Fredrik talked about scaling up insect diversity research at Hymenoptera Days, organized by the State Museum of Natural History in Stuttgart. It was a fantastic conference and we are thankful to the organizers. The talk was recorded and can be viewed [here](https://www.youtube.com/watch?v=WIhODP9HEFQ).
+
+![Hym](../static/img/HymiTag_Fred.jpg)
 
 ### September 2026 
 DarkTree has uploaded its first batch of 792 specimen images and barcodes to BOLD. 
