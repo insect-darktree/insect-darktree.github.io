@@ -11,7 +11,7 @@ Ela presented the DarkTree project at the International Barcode of Life Conferen
 The presentation sparked considerable interest and highlighted the growing international effort to shed light on the lesser-known, or “dark”, part of biodiversity. A large research community is working to uncover and document this hidden diversity, and DarkTree is proud to contribute to this exciting frontier.
 
 ![iBOL2026](../static/img/iBOL_Ela_DT.jpg)
-*The group appreciating state-of-the-art robotics lab.*
+*Ela Iwaszkiewicz-Eggebrecht representing the project at iBOL conference in Bangkok.*
 
 ### October 2026 part 3
 The DarkTree team met at Linköping University to discuss project progress, share knowledge, and learn from each other's areas of expertise.
