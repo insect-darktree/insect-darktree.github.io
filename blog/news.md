@@ -5,7 +5,19 @@ sidebar_position: 1
 
 # News
 
-### October 2026 
+### October 2026 part 3
+The DarkTree team met at Linköping University to discuss project progress, share knowledge, and learn from each other's areas of expertise.
+
+Interdisciplinary collaboration takes time and effort: developing a common language and understanding across different fields is essential – and it's the most fun!
+
+During the meeting, we dived into the details of DNA sequencing and PCR reactions and explored the fascinating world of insect diversity – meaning our computer scientists and engineers can now confidently recognize some of the major insect orders. Most importantly, we delved into Linköping University's area of expertise: computer vision.
+
+An engaging and highly educational meeting, full of knowledge sharing and new perspectives!
+
+![Liu1](../static/img/LiU_Cct_2026.jpg)
+*The group appreciating state-of-the-art robotics lab.*
+
+### October 2026 part 2
 Fredrik and Ela met with our German DarkTree collaborators, Cristina Vasilita-Lupascu and Thomas van der Kamp, experts in high-resolution micro-CT imaging of tiny insects using synchrotron radiation.
 
 During their visit, they toured two synchrotron facilities operated by KIT in Karlsruhe and DESY in Hamburg, where DarkTree specimens are being scanned. The visit offered a fascinating insight into the technology behind the project and the opportunity to see how these advanced techniques reveal insect morphology in unprecedented detail.
@@ -13,9 +25,9 @@ During their visit, they toured two synchrotron facilities operated by KIT in Ka
 A great opportunity to connect, exchange ideas, and see the science behind DarkTree in action!
 
 ![DESY1](../static/img/DESY1.jpg)
-*Four biologists happy to make use of the synchrotron.*
+*Four biologists keen on making use of the synchrotron for insect research.*
 
-### October 2026 
+### October 2026 part 1
 Fredrik talked about scaling up insect diversity research at Hymenoptera Days, organized by the State Museum of Natural History in Stuttgart. It was a fantastic conference and we are thankful to the organizers. The talk was recorded and can be viewed [here](https://www.youtube.com/watch?v=WIhODP9HEFQ).
 
 ![Hym](../static/img/HymiTag_Fred.jpg)
